@@ -1,11 +1,15 @@
 # get available funds
 bal = File.read("balance.txt").to_i
 time = Time.new
-
+mnt = time.month
+yr = time.year
 # loop through the expenses input and write to file
 File.open("expenses.txt", "a+") { |file| file.write("Modification time: #{time}\n
 ")}
     File.open("ledger_det.txt", "a+") { |file| file.write("#{time}
+---------------------
+Expenses\n\n")}
+    File.open("ledger_det_#{mnt}-#{yr}.txt", "a+") { |file| file.write("#{time}
 ---------------------
 Expenses\n\n")}
 
@@ -26,6 +30,8 @@ oth.times do
 ")}
     File.open("ledger_det.txt", "a+") { |file| file.write("#{nm.capitalize}: #{oe}\n
 ")}
+    File.open("ledger_det_#{mnt}-#{yr}.txt", "a+") { |file| file.write("#{nm.capitalize}: #{oe}\n
+")}
 end
 #end
 
@@ -44,5 +50,9 @@ File.open("ledger_det.txt", "a+") { |file| file.write("
 You have #{left} left after,
 (#{oth}) expenses totalling #{@her}.\n
 ")}
-
+File.open("ledger_det_#{mnt}-#{yr}.txt", "a+") { |file| file.write("
+------------------------------------
+You have #{left} left after,
+(#{oth}) expenses totalling #{@her}.\n
+")}
 #menu
